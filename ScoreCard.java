@@ -49,8 +49,27 @@ public class ScoreCard
     
     public int[] getWinners()
     {
-        // ToDo
-        return null;
+        int max = -1;
+        int count = 0;
+        
+        for(int s : scores) {
+            if (s > max){
+                max = s;
+            }
+            if (s == max){
+                count++;
+            }
+        }
+        int k = 0;
+        int [] winners = new int[count];
+
+        for (int i = 0; i < scores.length;i++){
+            if (scores[i] == max){
+                winners[k] = i;
+                k++;
+            }
+        }
+        return winners;
     }
     
 } // end class ScoreCard
