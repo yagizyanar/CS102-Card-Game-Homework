@@ -2,26 +2,25 @@ package cardgame;
 
 /**
  * Card - a single playing card
- * @author
- * @version
+// author:Yagiz Yanar
+// date:01.10.2025
  */
 public class Card
 {
-    // constants - to do in lectures
     final String[] SUITS = { "Hearts", "Diamonds", "Spades", "Clubs"};
     final String[] FACES = { "A", "2", "3", "4", "5",
                              "6", "7", "8", "9", "10",
-                             "J", "Q", "K"};
-    
+                             "J", "Q", "K"};    
     final int NOOFCARDSINSUIT = 13;
-    
-    // properties - to do in lectures
+
+    private int faceValue;
+    private int suit;
     int  cardNo;
     
-    // constructors  - to do in lectures
+    
     public Card( int faceValue, int suit )
     {
-        cardNo = faceValue + suit * NOOFCARDSINSUIT;
+        this.cardNo = faceValue + suit * NOOFCARDSINSUIT;
     }
     
     public Card( int cardNumber)
@@ -44,15 +43,18 @@ public class Card
         return FACES[ getFaceValue() ] + " of " + SUITS[ getSuit() ];
     }
     
-    public boolean equals( Card c)
+    public boolean equals(Card c)
     {
-        // ToDo
-        return false;
+        if(c == null){
+            return true;
+        }
+
+        return this.getFaceValue() == c.getFaceValue() && this.getSuit() == c.getSuit();
+          
     }
     
-    public int compareTo( Card c)
+    public int compareTo(Card c)
     {
-        // ToDo
-        return 0;
+        return this.getFaceValue() - c.getFaceValue();
     }
 }
