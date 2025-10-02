@@ -1,35 +1,38 @@
 package cardgame;
 
 // Player - Simple card game player with name and hand of cards
-// author:
-// date:
-public class Player
-{
+// author: Javanshir Aghayev
+// date: 02.10.2025
+public class Player {
     // properties
     String name;
     Cards hand;
-    
+
     // constructors
-    public Player( String name)
-    {
-        // ToDo
+    public Player(String name) {
+        this.name = name;
+        this.hand = new Cards(false);
     }
-    
+
     // methods
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
-    
-    public void add( Card c)
-    {
-        // ToDo
+
+    public void add(Card c) {
+        hand.addTopCard(c);
     }
-    
-    public Card playCard()
-    {
-        // ToDo
-        return null;
+
+    public Card playCard() {
+        return hand.getTopCard();
     }
-    
+
+    public int getNumberOfCards() {
+        return hand.valid;
+    }
+
+    public void showHand() {
+        hand.testOnlyPrint();
+    }
+
 } // end class Player
