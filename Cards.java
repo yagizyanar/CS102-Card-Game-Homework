@@ -39,6 +39,18 @@ public class Cards
             return tmp;
         }
     }
+
+    public int getCard(){
+        int cardFaceValue = 2;
+
+        for(int i = 0; i < cards.length; i++){
+            if(cards[i] != null){
+                cardFaceValue = cards[i].getFaceValue();
+            }
+        }
+
+        return cardFaceValue;
+    }
     
     public boolean addTopCard( Card c)
     {
