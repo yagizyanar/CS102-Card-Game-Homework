@@ -5,74 +5,85 @@ import java.util.ArrayList;
 // Cardgame
 // author:
 // date:
-public class CardGame
-{
+public class CardGame {
     // properties
-    Cards             fullPack;
+    Cards fullPack;
     ArrayList<Player> players;
-    ScoreCard         scoreCard;
-    Cards[]           cardsOnTable;
-    int               roundNo;
-    int               turnOfPlayer;
-    
+    ScoreCard scoreCard;
+    Cards[] cardsOnTable;
+    int roundNo;
+    int turnOfPlayer;
+
     // constructors
-    public CardGame( Player p1, Player p2, Player p3, Player p4)
-    {
-        // ToDo
+    public CardGame(Player p1, Player p2, Player p3, Player p4) {
+        fullPack = new Cards(true);
+        fullPack.shuffle();
+
+        this.players = new ArrayList<>();
+        players.add(p1);
+        players.add(p2);
+        players.add(p3);
+        players.add(p4);
+
+
+        scoreCard = new ScoreCard(players.size());
+        cardsOnTable = new Cards[players.size()];
+
+        int i = 0;
+        Card c;
+
+        while ((c = fullPack.getTopCard()) != null) {
+            players.get(i % 4).add(c);
+            i++;
+        }
+
+        roundNo = 1;
+        turnOfPlayer = 0;
+
     }
-    
+
     // methods
-    public boolean playTurn( Player p, Card c)
-    {
-        // Todo
+    public boolean playTurn(Player p, Card c) {
+
         return false;
     }
-    
-    public boolean isTurnOf( Player p)
-    {
+
+    public boolean isTurnOf(Player p) {
         // ToDo
         return false;
     }
-    
-    public boolean isGameOver()
-    {
+
+    public boolean isGameOver() {
         // ToDo
         return false;
     }
-    
-    public int getScore( int playerNumber)
-    {
+
+    public int getScore(int playerNumber) {
         // ToDo
         return -1;
     }
-    
-    public String getName( int playerNumber)
-    {
+
+    public String getName(int playerNumber) {
         // ToDo
         return "Not yet implemented";
     }
-    
-    public int getRoundNo()
-    {
+
+    public int getRoundNo() {
         // ToDo
         return -1;
     }
-    
-    public int getTurnOfPlayerNo()
-    {
+
+    public int getTurnOfPlayerNo() {
         // ToDo
         return -1;
     }
-    
-    public Player[] getWinners()
-    {
+
+    public Player[] getWinners() {
         // ToDo
         return null;
     }
-    
-    public String showScoreCard()
-    {
+
+    public String showScoreCard() {
         return scoreCard.toString();
     }
-    
 }
