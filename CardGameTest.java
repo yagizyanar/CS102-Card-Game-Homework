@@ -18,8 +18,12 @@ public class CardGameTest
         Card       c;
         Cards      cards;
         ScoreCard  scores;
-        Player     p;
+        Player     p1;
+        Player     p2;
+        Player     p3;
+        Player     p4;
         CardGame   game;
+        String player1;
         
         // PROGRAM CODE
         
@@ -40,10 +44,22 @@ public class CardGameTest
         System.out.println( "\n" + scores );
         
         // test Player class
-        // ToDo
+        p1 = new Player(player1);
+        System.out.println(p.getName());
+        System.out.println();
+        System.out.printf("Number of cards in hand is : %d",p.getNumberOfCards());
+        System.out.println();
         
         // test CardGame class too?
-        // Todo
+        game(p1, p2, p3, p4);
+        System.out.printf("The score of player3 is: %d",game.getScore(3));
+        System.out.println();
+        System.out.printf("The name of player2 is: %d",game.getName(2));
+        System.out.println();
+        System.out.println(game.showScoreCard());
+        System.out.println();
+
+
         
         // Once you have all the bits working, complete the MyCardGame program
         // that provides a menu allowing any of the players to play their card,
