@@ -3,8 +3,8 @@ package cardgame;
 import java.util.ArrayList;
 
 // Cardgame
-// author:
-// date:
+// author: Javanshir Aghayev
+// date: 05.10.2025
 public class CardGame {
     // properties
     Cards fullPack;
@@ -17,22 +17,19 @@ public class CardGame {
     // constructors
     public CardGame(Player p1, Player p2, Player p3, Player p4) {
         fullPack = new Cards(true);
-        fullPack.shuffle();
 
-        this.players = new ArrayList<>();
+        players = new ArrayList<>();
         players.add(p1);
         players.add(p2);
         players.add(p3);
         players.add(p4);
-
 
         scoreCard = new ScoreCard(players.size());
         cardsOnTable = new Cards[players.size()];
 
         int i = 0;
         Card c;
-
-        while ((c = fullPack.getTopCard()) != null) {
+        while( (c = fullPack.getTopCard()) != null) {
             players.get(i % 4).add(c);
             i++;
         }
@@ -43,44 +40,85 @@ public class CardGame {
     }
 
     // methods
-    public boolean playTurn(Player p, Card c) {
+    public boolean playTurn(Player p, Cards c) {
 
-        return false;
+        if(!isTurnOf(p)){
+            return false;
+        }
+
+        int playerIndex = players.indexOf(p);
+        cardsOnTable[playerIndex] = c;
+
+        turnOfPlayer = (turnOfPlayer + 1) % players.size();
+
+        if(turnOfPlayer == 0){
+            evaluateRound();
+            roundNo++;
+            cardsOnTable = new Cards[players.size()];
+        }
+
+        return true;
+    }
+
+    private void evaluateRound(){
+        int maxVal = -1;
+        int winnerIndex = -1;
+
+        for(int i = 0; i < cardsOnTable.length; i++){
+            Cards c = cardsOnTable[i];
+
+            if(c != null && c.getCard() > maxVal){
+                maxVal = c.getCard();
+                winnerIndex = i;
+            }
+
+            if(winnerIndex != -1){
+                scoreCard.update(winnerIndex, 1);
+            }
+
+        }
     }
 
     public boolean isTurnOf(Player p) {
-        // ToDo
-        return false;
+        return players.get(turnOfPlayer) == p;
     }
 
     public boolean isGameOver() {
-        // ToDo
-        return false;
+
+        for(Player player : players){
+            if(player.getNumberOfCards() > 0){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public int getScore(int playerNumber) {
-        // ToDo
-        return -1;
+        return scoreCard.getScore(playerNumber);
     }
 
     public String getName(int playerNumber) {
-        // ToDo
-        return "Not yet implemented";
+        return players.get(playerNumber).getName();
     }
 
     public int getRoundNo() {
-        // ToDo
-        return -1;
+        return roundNo;
     }
 
     public int getTurnOfPlayerNo() {
-        // ToDo
-        return -1;
+        return turnOfPlayer;
     }
 
     public Player[] getWinners() {
-        // ToDo
-        return null;
+        int[] winnerIndexes = scoreCard.getWinners();
+        Player[] winners = new Player[winnerIndexes.length];
+
+        for(int i = 0; i < winnerIndexes.length; i++){
+            winners[i] = players.get(winnerIndexes[i]);
+        }
+
+        return winners;
     }
 
     public String showScoreCard() {
