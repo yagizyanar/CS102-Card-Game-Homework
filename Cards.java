@@ -66,7 +66,7 @@ public class Cards
     private void createFullPackOfCards()
     {
         for (int i = 0; i < 4;i++){
-            for (int m = 1; m < 14;m++) {
+            for (int m = 0; m < 14;m++) {
                 addTopCard(new Card(m, i));
             }
         }
@@ -100,3 +100,4 @@ public class Cards
     }
     
 } // end class Cards
+
