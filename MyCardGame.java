@@ -4,8 +4,8 @@ import cardgame.*;
 // MyCardGame - provides a menu allowing any of the players to play their card,
 //              an option to see the score card, and one to quit the game at any time.
 //              When the game is over it dislays the winners.
-// author:
-// date:
+// author: Çınar Sipahi
+// date: 05.10.2025
 public class MyCardGame
 {
     public static void main( String[] args)
@@ -71,34 +71,71 @@ public class MyCardGame
                 play( p4, game);
             
             else if ( selection == MENU_SCORES )
-                // ToDo ~ System.out.println( game.showScoreCard() );
-                System.out.println( "ToDo..." );
+                System.out.println(game.showScoreCard());
             
             else if ( selection != MENU_EXIT)
                 System.out.println( "Invalid selection! \n" );
             
+            if (game.isGameOver()) {
+                Player[] winners = game.getWinners();
+                System.out.println("Game Over! Winner(s):");
+                for (Player w : winners) {
+                    System.out.println(w.getName());
+                }
+                break;
+            }
+            
         } while ( selection != MENU_EXIT);
 
-        // display winners...
-        // ToDo ~ game.isGameOver(); ? game.getWinners(); 
-        System.out.println( "ToDo..." );
-        
         System.out.println( "\nEnd of MyCardGame\n" );   
     }
 
-    // ToDo...
-    // get the card, c, that player p wants to play
-    // pass c to the game, see if it accepted c from p
-    // if game didn't accept the card, give c back to the player! 
-    // return accepted.
-    private static boolean play( Player p, CardGame game)
-    {
-        Card       c;
-        boolean    accepted;
-        
-        accepted = false;  // ToDo...
+    private static boolean play(Player p, CardGame game) {
+        Scanner scan = new Scanner(System.in);
+        Card c = null;
+        boolean accepted = false;
+  
+        if (p.getNumberOfCards() == 0) {
+            System.out.println(p.getName() + " has no cards left!");
+            return false;
+        }
+   
+        System.out.println(p.getName() + "'s hand :");
+        int shownIndex = 0;
+        for (int i = p.hand.valid - 1; i >= 0; i--) {
+            System.out.println(shownIndex + " : " + p.hand.cards[i]);
+            shownIndex++;
+        }
 
-        return accepted;
-    }
+        System.out.print("Enter the index of the card to play (0 = top): ");
+        int chosenIndex = scan.nextInt();
     
+        if (chosenIndex < 0 || chosenIndex >= p.getNumberOfCards()) {
+            System.out.println("Invalid index!");
+            return false;
+        }
+
+        int arrayIndex = p.getNumberOfCards() - 1 - chosenIndex;
+    
+        c = p.hand.cards[arrayIndex];
+        for (int i = arrayIndex; i < p.getNumberOfCards() - 1; i++) {
+            p.hand.cards[i] = p.hand.cards[i + 1];
+        }
+        p.hand.cards[p.getNumberOfCards() - 1] = null;
+        p.hand.valid--;
+    
+        Cards singleCard = new Cards(false);
+        singleCard.addTopCard(c);
+    
+        accepted = game.playTurn(p, singleCard);
+    
+        if (!accepted) {
+            p.add(c);
+            System.out.println("It's not " + p.getName() + "'s turn!");
+        } else {
+            System.out.println(p.getName() + " played: " + c);
+        }
+    
+        return accepted;
 } // end class MyCardGame
+
