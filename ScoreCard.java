@@ -40,7 +40,7 @@ public class ScoreCard
         
         for ( int playerNo = 0; playerNo < scores.length; playerNo++)
         {
-            s = s + playerNo + "\t" + scores[playerNo] + "\n";
+            s = s + (playerNo + 1) "\t" + scores[playerNo] + "\n";
         }
         
         s += "_____________\n";
@@ -73,3 +73,4 @@ public class ScoreCard
     }
     
 } // end class ScoreCard
+
