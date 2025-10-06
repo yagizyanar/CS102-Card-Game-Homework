@@ -17,6 +17,7 @@ public class CardGame {
     // constructors
     public CardGame(Player p1, Player p2, Player p3, Player p4) {
         fullPack = new Cards(true);
+        fullPack.shuffle();
 
         players = new ArrayList<>();
         players.add(p1);
@@ -124,4 +125,5 @@ public class CardGame {
     public String showScoreCard() {
         return scoreCard.toString();
     }
+
 }
