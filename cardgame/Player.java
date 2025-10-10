@@ -3,6 +3,7 @@ package cardgame;
 // Player - Simple card game player with name and hand of cards
 // author: Elshan Iskandarli
 // date: 10.10.2025
+
 public class Player {
     // properties
     String name;
