@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import cardgame.*;
+
 
 // MyCardGame - provides a menu allowing any of the players to play their card,
 //              an option to see the score card, and one to quit the game at any time.
@@ -102,8 +102,8 @@ public class MyCardGame
    
         System.out.println(p.getName() + "'s hand :");
         int shownIndex = 0;
-        for (int i = p.hand.valid - 1; i >= 0; i--) {
-            System.out.println(shownIndex + " : " + p.hand.cards[i]);
+        for (int i = p.getHand().getValid() - 1; i >= 0; i--) {
+            System.out.println(shownIndex + " : " + p.getHand().getCards()[i]);
             shownIndex++;
         }
 
@@ -115,14 +115,7 @@ public class MyCardGame
             return false;
         }
 
-        int arrayIndex = p.getNumberOfCards() - 1 - chosenIndex;
-    
-        c = p.hand.cards[arrayIndex];
-        for (int i = arrayIndex; i < p.getNumberOfCards() - 1; i++) {
-            p.hand.cards[i] = p.hand.cards[i + 1];
-        }
-        p.hand.cards[p.getNumberOfCards() - 1] = null;
-        p.hand.valid--;
+        c = p.playCard();
     
         Cards singleCard = new Cards(false);
         singleCard.addTopCard(c);
@@ -138,4 +131,4 @@ public class MyCardGame
     
         return accepted;
 } // end class MyCardGame
-
+}

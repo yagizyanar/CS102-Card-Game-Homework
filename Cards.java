@@ -1,4 +1,4 @@
-package cardgame;
+
 
 import java.util.Random;
 
@@ -12,8 +12,8 @@ public class Cards {
     final int NOOFCARDSINFULLPACK = 52;
 
     // properties
-    Card[] cards;
-    int valid;  // number of cards currently in collection
+    private Card[] cards;
+    private int valid;  // number of cards currently in collection
 
     // constructors
     public Cards(boolean fullPack) {
@@ -75,8 +75,8 @@ public class Cards {
         Random rand = new Random();
 
         for (int i = 0; i < 500; i++) {
-            random1 = rand.nextInt(53);
-            random2 = rand.nextInt(53);
+            random1 = rand.nextInt(NOOFCARDSINFULLPACK);
+            random2 = rand.nextInt(NOOFCARDSINFULLPACK);
             temp = cards[random1];
             cards[random1] = cards[random2];
             cards[random2] = temp;
@@ -90,6 +90,15 @@ public class Cards {
             System.out.println(cards[i]);
         }
     }
+
+    public Card[] getCards() {
+        return cards;
+    }
+
+    public int getValid() {
+        return valid;
+    }
+
 
 } // end class Cards
 

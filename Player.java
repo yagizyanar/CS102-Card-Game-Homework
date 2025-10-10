@@ -1,4 +1,4 @@
-package cardgame;
+
 
 // Player - Simple card game player with name and hand of cards
 // author: Elshan Iskandarli
@@ -6,8 +6,8 @@ package cardgame;
 
 public class Player {
     // properties
-    String name;
-    Cards hand;
+    private String name;
+    private Cards hand;
 
     // constructors
     public Player(String name) {
@@ -29,11 +29,17 @@ public class Player {
     }
 
     public int getNumberOfCards() {
-        return hand.valid;
+        return hand.getValid();
     }
 
     public void showHand() {
         hand.testOnlyPrint();
     }
+
+    public Cards getHand() {
+        return hand;
+    }
+
+    
 
 } // end class Player

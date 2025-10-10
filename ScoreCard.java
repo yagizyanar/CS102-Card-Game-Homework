@@ -1,4 +1,4 @@
-package cardgame;
+
 
 // ScoreCard - Maintains one integer score per player, for any number of players
 //             Caution: invalid playernumbers result in run-time exception!

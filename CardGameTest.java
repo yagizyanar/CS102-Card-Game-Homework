@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import cardgame.*;
+
 
 // CardGameTest
 // author: Serhat Mutlu

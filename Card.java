@@ -1,4 +1,3 @@
-package cardgame;
 
 /**
  * Card - a single playing card
@@ -18,9 +17,11 @@ public class Card
     int  cardNo;
     
     
-    public Card( int faceValue, int suit )
+    public Card(int faceValue, int suit)
     {
         this.cardNo = faceValue + suit * NOOFCARDSINSUIT;
+        this.faceValue = faceValue;
+        this.suit = suit;
     }
     
     public Card( int cardNumber)
